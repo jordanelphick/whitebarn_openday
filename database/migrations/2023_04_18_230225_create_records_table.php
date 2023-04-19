@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
+            $table->string('document_number');
+            $table->string('document_name');
+            $table->string('document_revision');
+            $table->string('status');
+            $table->date('date_reviewed')->nullable();
+            $table->date('date_closed')->nullable();
+            $table->string('comment');
+            $table->foreignId('workpackage_id');
             $table->timestamps();
         });
     }

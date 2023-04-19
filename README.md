@@ -13,8 +13,11 @@
 2. run ```git clone https://github/jordanelphick/zenviron.git```
 3. run ```cd zenviron```
 4. run ```composer install```
-5. update the .env file with the correct DB user and pwd, for macos add to .env file DB_SOCKET=Applications/MAMP/tmp/mysql/mysql.sock
+5. update the .env file with the correct DB user and pwd, for macos add to .env file DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock
 6. run ```php artisan migrate:fresh```
 7. run ```php artisan db:seed```
 8. run ```php artisan key:generate```
 9. run ```php artisan serve```
+
+
+

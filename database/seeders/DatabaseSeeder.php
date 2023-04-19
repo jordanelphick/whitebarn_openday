@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ProjectsTableSeeder;
 use Database\Seeders\WorkPackagesTableSeeder;
-
+use Database\Seeders\RecordsTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             ProjectsTableSeeder::class,
-            WorkPackagesTableSeeder::class
+            WorkPackagesTableSeeder::class,
+            RecordsTableSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();
