@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workpackages', function (Blueprint $table) {
+        Schema::create('workareas', function (Blueprint $table) {
             $table->id();
             $table->string('number');
             $table->string('name');
-            $table->foreignId('project_id');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects'); 
             $table->timestamps();
 
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workpackages');
+        Schema::dropIfExists('workareas');
     }
 };

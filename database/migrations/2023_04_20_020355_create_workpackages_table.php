@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('records', function (Blueprint $table) {
+        Schema::create('workpackages', function (Blueprint $table) {
             $table->id();
-            $table->string('document_number'); 
-            $table->string('document_name'); 
-            $table->string('document_revision'); 
-            $table->string('status');     
-            $table->string('comment');
-            $table->date('date_reviewed');
-            $table->date('date_closed')->nullable();   
+            $table->string('number'); 
+            $table->string('name'); 
+            $table->string('status')->nullable();     
+            $table->unsignedBigInteger('accountable_id');
+            $table->foreign('accountable_id')->references('id')->on('users'); 
             $table->unsignedBigInteger('workarea_id');
             $table->foreign('workarea_id')->references('id')->on('workareas');     
             $table->timestamps();
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('workpackages');
     }
 };

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,5 +29,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-
+    Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
+    Route::get('/projects/{project}/workareas/{workarea}', [WorkpackageController::class, 'index'])->name('workapackage');
 });

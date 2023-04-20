@@ -39,7 +39,7 @@ class ProjectsTableSeeder extends Seeder
 
         DB::table('projects')->insert([
             'number' => 'ZX118',
-            'name' => 'La Trobe BESS',
+            'name' => 'Latrobe Valley BESS',
             'status' => 'active'
         ]);
     }

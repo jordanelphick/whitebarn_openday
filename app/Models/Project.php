@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Record;
-use App\Models\Workpackage;
+use App\Models\Workarea;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Carbon\Carbon;
+
 class Project extends Model
 {
     use HasFactory;
@@ -25,19 +26,19 @@ class Project extends Model
     /**
      * Get the workpackges for the project.
      */
-    public function workpackages(): HasMany
-    {
-        return $this->hasMany(Workpackage::class);
+    public function workareas(): HasMany {
+        return $this->hasMany(Workarea::class);
     }
 
-    public function records(): HasManyThrough
-    {
-        return $this->hasManyThrough(Record::class, Workpackage::class);
+    public function records(): HasManyThrough {
+        return $this->hasManyThrough(Record::class, Workarea::class);
     }
 
-    public function last_review_date() {
-        return $this->hasManyThrough(Record::class, Workpackage::class)->orderBy('date_reviewed', 'desc')->pluck('date_reviewed')->first();
-
+    public function latest_updated_record() {
+        //return $this->hasManyThrough(Record::class, Workarea::class)->orderBy('updated_at', 'desc')->pluck('date_reviewed')->first();
+        
+        return $this->records()->orderBy('updated_at', 'desc')->limit(1);
     }
 
 }
+

@@ -14,10 +14,7 @@
                     <thead class="text-xs  uppercase">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Project name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Number
+                            Project
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Status
@@ -26,7 +23,7 @@
                             Open Records
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Last Reviewed Date
+                            Last Updated
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <span class="sr-only">Edit</span>
@@ -37,22 +34,19 @@
                         @foreach($projects as $project)
                             <tr class="bg-white border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-700 whitespace-nowrap">
-                                {{ $project->name }}
+                                {{ $project->number }} - {{ $project->name }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $project->number }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $project->status }}
+                                {{ ($project->status==""?"-":ucwords($project->status)) }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ count($project->records->where('status','=', 'open')) }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $project->last_review_date() }}
+                                {{ ($project->updated_at==null?"-":Carbon\Carbon::parse($project->updated_at)->diffForHumans()) }}
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="{{ route('project', $project->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             </td>
                         </tr>
                         @endforeach

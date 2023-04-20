@@ -20,7 +20,8 @@ class RecordsTableSeeder extends Seeder
             'status' => 'open',
             'date_reviewed' => '2023-04-19',
             'comment' => 'Confirm orientation of North Arrow',
-            'workpackage_id' => 7
+            'workarea_id' => 7,
+            'updated_at' => '2023-04-18 06:09:45'
         ]);
 
         DB::table('records')->insert([
@@ -30,7 +31,8 @@ class RecordsTableSeeder extends Seeder
             'status' => 'open',
             'date_reviewed' => '2023-04-19',
             'comment' => 'Check with client single 4m wide roller door meets requirements',
-            'workpackage_id' => 7
+            'workarea_id' => 7,
+            'updated_at' => '2023-04-19 06:09:45'
         ]);
 
         DB::table('records')->insert([
@@ -40,7 +42,8 @@ class RecordsTableSeeder extends Seeder
             'status' => 'open',
             'date_reviewed' => '2023-04-19',
             'comment' => 'Check 66000L water tank meets requirements',
-            'workpackage_id' => 7
+            'workarea_id' => 7,
+            'updated_at' => '2023-04-20 06:09:45'
         ]);
     }
 }
