@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         @foreach($project->workareas as $workarea)
-                            <tr class="bg-neutral-100 border-b tr-workarea">
+                            <tr class="hidden bg-neutral-100 border-b tr-workarea">
                                 <th scope="row" class="px-6 py-4 font-black text-gray-700 whitespace-nowrap">
                                     {{ $workarea->number }}. {{ strtoupper($workarea->name) }}
                                 </th>
