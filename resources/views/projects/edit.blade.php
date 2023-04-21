@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __($project->name) }}
+            <a class="font-semibold text-xl text-gray-800 leading-tight" href="{{ route('projects') }}">{{ __('Projects') }}</a> >
+            <a class="font-semibold text-xl text-gray-800 leading-tight" href="{{ route('project', $project->id) }}">{{ __($project->name) }}</a>
         </h2>
     </x-slot>
 
@@ -58,16 +59,16 @@
                                         {{ ($workpackage->status==""?"-":ucwords($workpackage->status)) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        
+
                                     </td>
                                     <td class="px-6 py-4">
-                                        
+
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                     </td>
                                 </tr>
-                            @endforeach                        
+                            @endforeach
                         @endforeach
 
                     </tbody>
