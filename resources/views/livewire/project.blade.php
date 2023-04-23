@@ -20,7 +20,7 @@
                     <x-table-row bgColour="bg-zinc-100">
                         <x-table-cell fontWeight="font-semibold">{{ $workarea->number . ". " . $workarea->name }}</x-table-cell>
                         <x-table-cell>{{ ($workarea->status==""?"-":ucwords($workarea->status)) }}</x-table-cell>
-                        <x-table-cell>{{ count($workarea->records->where('status','=', 'open')) }}</x-table-cell>
+                        <x-table-cell></x-table-cell>
                         <x-table-cell>{{ ($workarea->updated_at==null?"-":Carbon\Carbon::parse($workarea->updated_at)->diffForHumans()) }}</x-table-cell>
                         <x-table-cell><a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
                     </x-table-row>
@@ -29,7 +29,7 @@
                         <x-table-row>
                             <x-table-cell>{{ $workarea->number . "." . $workpackage->number . ". " . $workpackage->name }}</x-table-cell>
                             <x-table-cell>{{ ($workpackage->status==""?"-":ucwords($workpackage->status)) }}</x-table-cell>
-                            <x-table-cell></x-table-cell>
+                            <x-table-cell>{{ count($workpackage->records->where('status','=', 'open')) }}</x-table-cell>
                             <x-table-cell>{{ ($workpackage->updated_at==null?"-":Carbon\Carbon::parse($workpackage->updated_at)->diffForHumans()) }}</x-table-cell>
                             <x-table-cell><a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
                         </x-table-row>

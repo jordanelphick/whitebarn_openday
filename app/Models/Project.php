@@ -34,18 +34,7 @@ class Project extends Model
         return $this->hasMany(Workarea::class);
     }
 
-    /**
-     * Get the records for the project.
-     */
-    public function records(): HasManyThrough {
-        return $this->hasManyThrough(Record::class, Workarea::class);
-    }
 
-    public function latest_updated_record() {
-        //return $this->hasManyThrough(Record::class, Workarea::class)->orderBy('updated_at', 'desc')->pluck('date_reviewed')->first();
-
-        return $this->records()->orderBy('updated_at', 'desc')->limit(1);
-    }
 
 }
 
