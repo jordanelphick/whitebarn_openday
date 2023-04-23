@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Workarea;
+use App\Models\Workpackage;
 use Laravel\Scout\Searchable;
 
 class Record extends Model
@@ -20,9 +20,9 @@ class Record extends Model
     /**
      * Get the workpackage that owns the record.
      */
-    public function workarea(): BelongsTo
+    public function workpackage(): BelongsTo
     {
-        return $this->belongsTo(Workarea::class);
+        return $this->belongsTo(Workpackage::class);
     }
 
 

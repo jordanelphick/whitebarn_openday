@@ -32,7 +32,7 @@ Route::middleware([
     Route::get('/dashboard', cProjects::class)->name('dashboard');
     Route::get('/projects', cProjects::class)->name('projects');
     //Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
-    Route::get('/projects/{projectId}', cProject::class)->name('project');
+    Route::get('/projects/{projectNumber}', cProject::class)->name('project');
     /*Route::get('/projects/{project}', function($project){
         dd($project);
     })->name('project');*/

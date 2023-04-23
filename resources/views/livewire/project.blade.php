@@ -1,6 +1,7 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Project') }} > {{ $project->number . " - " .  $project->name}}
+        <a class="font-semibold text-xl text-gray-800 leading-tight" href="{{ route('projects') }}">{{ __('Projects') }}</a> >
+        <a class="font-semibold text-xl text-gray-800 leading-tight" href="{{ route('project', $project->number) }}">{{ __($project->number)}} {{ __($project->name) }}</a>
     </h2>
 </x-slot>
 
@@ -16,8 +17,8 @@
             </x-slot>
             <x-slot name="body">
                 @foreach($project->workareas as $workarea)
-                    <x-table-row bgColour="bg-zinc-50">
-                        <x-table-cell fontWeight="font-bold">{{ $workarea->number . ". " . $workarea->name }}</x-table-cell>
+                    <x-table-row bgColour="bg-zinc-100">
+                        <x-table-cell fontWeight="font-semibold">{{ $workarea->number . ". " . $workarea->name }}</x-table-cell>
                         <x-table-cell>{{ ($workarea->status==""?"-":ucwords($workarea->status)) }}</x-table-cell>
                         <x-table-cell>{{ count($workarea->records->where('status','=', 'open')) }}</x-table-cell>
                         <x-table-cell>{{ ($workarea->updated_at==null?"-":Carbon\Carbon::parse($workarea->updated_at)->diffForHumans()) }}</x-table-cell>

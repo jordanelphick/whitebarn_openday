@@ -15,11 +15,11 @@ class cProject extends Component
 
     //protected $queryString = ['sortField', 'sortDirection'];
 
-    public $projectId;
+    public $projectNumber;
 
-    public function mount($projectId)
+    public function mount($projectNumber)
     {
-        $this->projectId = $projectId;
+        $this->projectNumber = $projectNumber;
     }
 
     public function sortBy($field)
@@ -37,7 +37,7 @@ class cProject extends Component
     {
 
        return view('livewire.project', [
-            'project' => Project::find($this->projectId)
+            'project' => Project::where('number',$this->projectNumber)->first()
         ]);
 
         /* return view('livewire.projects', [

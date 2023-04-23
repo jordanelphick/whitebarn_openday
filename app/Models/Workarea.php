@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
 use App\Models\Workpackage;
-use App\Models\Record;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
@@ -39,11 +38,5 @@ class Workarea extends Model
     {
         return $this->hasMany(Workpackage::class);
     }
-    /**
-     * Get the records for the workpackage.
-     */
-    public function records(): HasMany
-    {
-        return $this->hasMany(Record::class);
-    }
+
 }
