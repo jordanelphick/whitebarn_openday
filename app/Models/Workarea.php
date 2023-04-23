@@ -9,10 +9,12 @@ use App\Models\Workpackage;
 use App\Models\Record;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Workarea extends Model
 {
     use HasFactory;
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +38,7 @@ class Workarea extends Model
     public function workpackages(): HasMany
     {
         return $this->hasMany(Workpackage::class);
-    }    
+    }
     /**
      * Get the records for the workpackage.
      */

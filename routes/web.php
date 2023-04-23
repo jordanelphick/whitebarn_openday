@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectsController;
+
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\WorkareaController;
+
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\cProjects;
 use App\Http\Livewire\cProject;
 
 /*
@@ -26,9 +29,12 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/projects', cProject::class)->name('projects');
-    //Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-    Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
-    Route::get('/projects/{project}/workareas/{workarea}', [WorkpackageController::class, 'index'])->name('workapackage');
+    Route::get('/dashboard', cProjects::class)->name('dashboard');
+    Route::get('/projects', cProjects::class)->name('projects');
+    //Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
+    Route::get('/projects/{projectId}', cProject::class)->name('project');
+    /*Route::get('/projects/{project}', function($project){
+        dd($project);
+    })->name('project');*/
+    Route::get('/projects/{project}/{workarea}', [WorkareaController::class, 'index'])->name('workarea');
 });

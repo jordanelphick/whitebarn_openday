@@ -7,20 +7,13 @@ use Livewire\Component\table;
 use App\Models\Project;
 
 
-class cProject extends Component
+class cProjects extends Component
 {
     public $search = '';
-    public $sortField = '';
+    public $sortField = 'number';
     public $sortDirection = 'asc';
 
     //protected $queryString = ['sortField', 'sortDirection'];
-
-    public $projectId;
-
-    public function mount($projectId)
-    {
-        $this->projectId = $projectId;
-    }
 
     public function sortBy($field)
     {
@@ -35,12 +28,12 @@ class cProject extends Component
 
     public function render()
     {
-
-       return view('livewire.project', [
-            'project' => Project::find($this->projectId)
+       return view('livewire.projects', [
+            'projects' => Project::orderBy($this->sortField,$this->sortDirection)->get()
         ]);
 
-        /* return view('livewire.projects', [
+        /* Code below utilises ::search (Laravel Scout) funcitonality, which is not currently implemented / nor required.
+        return view('livewire.projects', [
              'projects' => Project::search('number', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(100),
          ]); */
 

@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Workarea;
+use Laravel\Scout\Searchable;
 
 class Record extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'document_number', 'document_name', 'document_revision','comment', 'status', 'date_reviewed', 'date_closed'

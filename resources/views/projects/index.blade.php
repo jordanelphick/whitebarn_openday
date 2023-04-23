@@ -21,9 +21,9 @@
                         <x-table-cell>{{ ($project->status==""?"-":ucwords($project->status)) }}</x-table-cell>
                         <x-table-cell>{{ count($project->records->where('status','=', 'open')) }}</x-table-cell>
                         <x-table-cell>{{ ($project->updated_at==null?"-":Carbon\Carbon::parse($project->updated_at)->diffForHumans()) }}</x-table-cell>
-                        <x-table-cell><a href="{{ route('project', $project->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
+                        <x-table-cell><a href="{{ route('project', $project->encode_id()) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
                     </x-table-row>
-                    @endforeach                                      
+                    @endforeach
                 </x-slot>
             </x-table>
         </div>

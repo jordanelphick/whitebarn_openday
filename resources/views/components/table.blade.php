@@ -1,17 +1,19 @@
-<div class="align-middle min-w-full overflow-x-auto shadow overflow-hiden sm-rounded-lg">
-
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs  uppercase">
-            <tr class="">
-                {{ $head }}
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-cool-gray-200">
-            <tr class="g-neutral-100 border-b tr-workarea">
-                {{ $body }}
-            </tr>
-        </tbody>
-    </table>
-
+<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+                <tr>
+                    {{ $head }}
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+                <tr class="g-neutral-100 border-b">
+                    {{ $body }}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
 

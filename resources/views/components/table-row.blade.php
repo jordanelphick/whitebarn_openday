@@ -1,4 +1,15 @@
-<tr class="bg-white border-b tr-workarea">
-    {{ $slot}}
-</tr>
+@props([
+    'bgColour' => null,
+])
+
+@if (isset($bgColour))
+    <tr class="{{$bgColour}}">
+        {{ $slot}}
+    </tr>
+@else
+    <tr>
+        {{ $slot}}
+    </tr>
+@endif
+
 
