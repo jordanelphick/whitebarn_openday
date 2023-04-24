@@ -7,7 +7,7 @@ use Livewire\Component\table;
 use App\Models\Project;
 
 
-class cProject extends Component
+class cWorkpackage extends Component
 {
     public $search = '';
     public $sortField = '';
@@ -17,10 +17,14 @@ class cProject extends Component
     //protected $queryString = ['sortField', 'sortDirection'];
 
     public $projectNumber;
+    public $workareaName;
 
-    public function mount($projectNumber)
+    public $workpackageName;
+    public function mount($projectNumber, $workareaName, $workpackageName)
     {
         $this->projectNumber = $projectNumber;
+        $this->workareaName = $workareaName;
+        $this->workpackageName = $workpackageName;
     }
     public function edit() {
         $this->showEditModal = true;
@@ -39,9 +43,26 @@ class cProject extends Component
     public function render()
     {
 
-       return view('livewire.project', [
-            'project' => Project::where('number',$this->projectNumber)->first()
+        $project = Project::where('number', $this->projectNumber)->first();
+
+        //dd($project->number);
+
+        $workarea = $project->workareas->where('name', 'LIKE', str_replace("_", " ", $this->workareaName) )->first();
+
+        //dd($workarea->name);
+
+        $workpackage = $workarea->workpackages->where('name', 'LIKE', str_replace("_", " ", $this->workpackageName) )->first();
+
+        //dd($workpackage->name);
+        //
+        return view('livewire.workpackage', [
+            'project' => $project,
+            'workarea' => $workarea,
+            'workpackage' => $workpackage
         ]);
+
+        // 'project' => Project::where('number',$this->projectNumber)->first()
+        //]);
 
         /* return view('livewire.projects', [
              'projects' => Project::search('number', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(100),

@@ -7,7 +7,7 @@ use Livewire\Component\table;
 use App\Models\Project;
 
 
-class cProject extends Component
+class cWorkarea extends Component
 {
     public $search = '';
     public $sortField = '';
@@ -17,10 +17,12 @@ class cProject extends Component
     //protected $queryString = ['sortField', 'sortDirection'];
 
     public $projectNumber;
+    public $workareaName;
 
-    public function mount($projectNumber)
+    public function mount($projectNumber, $workareaName)
     {
         $this->projectNumber = $projectNumber;
+        $this->workareaName = $workareaName;
     }
     public function edit() {
         $this->showEditModal = true;
@@ -38,10 +40,16 @@ class cProject extends Component
 
     public function render()
     {
+        $project = Project::where('number', $this->projectNumber)->first();
 
-       return view('livewire.project', [
-            'project' => Project::where('number',$this->projectNumber)->first()
+        $workarea = $project->workareas->where('name', 'LIKE', str_replace("_", " ", $this->workareaName) )->first();
+
+        return view('livewire.workarea', [
+            'workarea' => $workarea
         ]);
+
+           // 'project' => Project::where('number',$this->projectNumber)->first()
+        //]);
 
         /* return view('livewire.projects', [
              'projects' => Project::search('number', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(100),

@@ -2,13 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\WorkareaController;
 
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\cProjects;
 use App\Http\Livewire\cProject;
-
+use App\Http\Livewire\cWorkarea;
+use App\Http\Livewire\cWorkpackage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +32,8 @@ Route::middleware([
     Route::get('/projects', cProjects::class)->name('projects');
     //Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
     Route::get('/projects/{projectNumber}', cProject::class)->name('project');
-    /*Route::get('/projects/{project}', function($project){
-        dd($project);
-    })->name('project');*/
-    Route::get('/projects/{project}/{workarea}', [WorkareaController::class, 'index'])->name('workarea');
+    //Route::get('/projects/{project}/{workarea}', [WorkareaController::class, 'index'])->name('workarea');
+    Route::get('/projects/{projectNumber}/{workareaName}', cWorkarea::class)->name('workarea');
+
+    Route::get('/projects/{projectNumber}/{workareaName}/{workpackageName}', cWorkpackage::class)->name('workpackage');
 });

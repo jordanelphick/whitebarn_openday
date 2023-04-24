@@ -31,5 +31,136 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user->ownedTeams()->save($team);
+
+
+        $user = User::create([
+            'id'=>'2',
+            'name' => 'Chad Davis',
+            'email' => 'cdavis@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'2',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+        $user = User::create([
+            'id'=>'3',
+            'name' => 'Joel Hillier',
+            'email' => 'jhillier@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'3',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+
+        $user = User::create([
+            'id'=>'4',
+            'name' => 'Michael Wasson',
+            'email' => 'mwasson@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'4',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+        $user = User::create([
+            'id'=>'5',
+            'name' => 'Mehrdad Paresei',
+            'email' => 'mparesei@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'5',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+        $user = User::create([
+            'id'=>'6',
+            'name' => 'Tom Bailey',
+            'email' => 'tbailey@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'6',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+
+        $user = User::create([
+            'id'=>'7',
+            'name' => 'Jess Haugh',
+            'email' => 'jhaugh@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'7',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+        $user = User::create([
+            'id'=>'8',
+            'name' => 'Leah Dove',
+            'email' => 'ldove@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'8',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
+
+        $user = User::create([
+            'id'=>'9',
+            'name' => 'Riley Thompson',
+            'email' => 'rthompson@zenviron.com',
+            'password' => Hash::make('NouveauC0de')
+        ]);
+
+        $team = Team::create([
+            'id'=>'9',
+            'name' => $user->name.'\'s Team',
+            'user_id' => $user->id,
+            'personal_team' => true
+        ]);
+
+        $user->ownedTeams()->save($team);
     }
 }

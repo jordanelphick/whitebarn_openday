@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Workarea;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 use App\Models\Record;
+use App\Models\User;
 
 class Workpackage extends Model
 {
@@ -31,5 +33,9 @@ class Workpackage extends Model
         return $this->hasMany(Record::class);
     }
 
+    public function user(): HasOne
+    {
+        return $this->HasOne(User::class,'id','accountable_id');
+    }
 
 }
