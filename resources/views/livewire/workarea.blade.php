@@ -30,20 +30,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!--
-              This example requires some changes to your config:
 
-              ```
-              // tailwind.config.js
-              module.exports = {
-                // ...
-                plugins: [
-                  // ...
-                  require('@tailwindcss/forms'),
-                ],
-              }
-              ```
-            -->
             <form>
                 <div class="space-y-12">
                     <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
