@@ -27,7 +27,7 @@
                 <x-table-heading wire:click="sortBy('open_records')" :direction="$sortField ==='open_records' ? $sortDirection : null">OPEN RECORDS</x-table-heading>
                 <x-table-heading wire:click="sortBy('accountable_id')" :direction="$sortField ==='open_records' ? $sortDirection : null">Accountable</x-table-heading>
                 <x-table-heading wire:click="sortBy('updated_at')" :direction="$sortField ==='updated_at' ? $sortDirection : null">UPDATED AT</x-table-heading>
-                <x-table-heading>TEST</x-table-heading>
+                <x-table-heading>Quick Edit</x-table-heading>
                 <x-table-heading>Edit<span class="sr-only">Edit</span></x-table-heading>
             </x-slot>
             <x-slot name="body">
@@ -39,7 +39,7 @@
                         <x-table-cell>-</x-table-cell>
                         <x-table-cell>{{ ($workarea->updated_at==null?"-":Carbon\Carbon::parse($workarea->updated_at)->diffForHumans()) }}</x-table-cell>
                         <x-table-cell>
-                            <x-button wire:click="edit">TEST MODAL</x-button>
+                            <x-button-pencil wire:click="edit">TEST MODAL</x-button-pencil>
                         </x-table-cell>
                         <x-table-cell>
                             <a href="{{ route('workarea', ['projectNumber'=>$project->number,str_replace(" ", "_", $workarea->name)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Add</a> |
@@ -65,9 +65,64 @@
     </div>
 
     <x-dialog-modal wire:model="showEditModal">
-        <x-slot name="title">title</x-slot>
+        <x-slot name="title">Work Package Details</x-slot>
         <x-slot name="content">
-            <input id="test"/>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-gray-900/10 pb-12 md:grid-cols-3">
+
+
+                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-8">
+                    <div class="sm:col-span-3">
+                        <label for="workpackage-number" class="block text-sm font-medium leading-6 text-gray-900">Number / Design ITP Ref</label>
+                        <div class="mt-2">
+                            <input type="text" name="workpackage-number" id="workpackage-number" autocomplete="workpackage-number" value="{{$workpackage->number}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="workpacakge-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                        <div class="mt-2">
+                            <input type="text" name="workpacakge-name" id="workpacakge-name" autocomplete="workpacakge-name" value="{{$workpackage->name}}"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="project" class="block text-sm font-medium leading-6 text-gray-900">Project</label>
+                        <div class="mt-2">
+                            <select id="project" name="project" autocomplete="project-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                @foreach(App\Models\Project::all() as $prj)
+                                    <option disabled {{($prj->id===$workarea->project->id?"selected":"")}}>{{$prj->number}} - {{ $prj->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="workarea" class="block text-sm font-medium leading-6 text-gray-900">Work Area</label>
+                        <div class="mt-2">
+                            <select id="workarea" name="workarea" autocomplete="workarea-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+
+                                @foreach(App\Models\Workarea::where('project_id','=', $project->id)->get() as $area)
+                                    <option {{ ($area->id === $workarea->id? "selected":"") }}>{{$area->number . ". " . $area->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="accountable" class="block text-sm font-medium leading-6 text-gray-900">Accountable Person</label>
+                        <div class="mt-2">
+                            <select id="accountable" name="accountable" autocomplete="accountable-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+
+                                @foreach(App\Models\User::all() as $u)
+                                    <option {{ ($u->id === $workpackage->accountable_id ? "selected":"") }}>{{ $u->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </x-slot>
         <x-slot name="footer">
             <x-button>Cancel</x-button>

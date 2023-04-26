@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -67,6 +68,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Workpackage::class,'accountable_id');
     }
+    public function records(): BelongsToMany
+    {
+        return $this->belongsToMany(Record::class);
+    }
+
     public function initials() {
         $ret = '';
         foreach (explode(' ', $this->name) as $word)

@@ -45,5 +45,18 @@ class RecordsTableSeeder extends Seeder
             'workpackage_id' => 7,
             'updated_at' => '2023-04-20 06:09:45'
         ]);
+
+        DB::table('record_user')->insert([
+            'record_id' => '1',
+            'user_id' => '1'
+        ]);
+        DB::table('record_user')->insert([
+            'record_id' => '2',
+            'user_id' => '1'
+        ]);
+        DB::table('record_user')->insert([
+            'record_id' => '1',
+            'user_id' => '4'
+        ]);
     }
 }
