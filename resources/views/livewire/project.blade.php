@@ -17,7 +17,6 @@
         </ol>
     </nav>
 </x-slot>
-
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <x-table>
@@ -34,10 +33,10 @@
                 @foreach($project->workareas as $workarea)
                     <x-table-row bgColour="bg-zinc-100">
                         <x-table-cell fontWeight="font-semibold">{{ $workarea->number . ". " . $workarea->name }}</x-table-cell>
-                        <x-table-cell>{{ ($workarea->status==""?"-":ucwords($workarea->status)) }}</x-table-cell>
-                        <x-table-cell>-</x-table-cell>
-                        <x-table-cell>-</x-table-cell>
-                        <x-table-cell>{{ ($workarea->updated_at==null?"-":Carbon\Carbon::parse($workarea->updated_at)->diffForHumans()) }}</x-table-cell>
+                        <x-table-cell>{{ ($workarea->status==""?"":ucwords($workarea->status)) }}</x-table-cell>
+                        <x-table-cell></x-table-cell>
+                        <x-table-cell></x-table-cell>
+                        <x-table-cell>{{ ($workarea->updated_at==null?"":Carbon\Carbon::parse($workarea->updated_at)->diffForHumans()) }}</x-table-cell>
                         <x-table-cell>
                             <x-button-pencil wire:click="edit">TEST MODAL</x-button-pencil>
                         </x-table-cell>
@@ -46,15 +45,15 @@
                             <a href="{{ route('workarea', ['projectNumber'=>$project->number,str_replace(" ", "_", $workarea->name)]) }}" class="font-medium text-gray-600 dark:text-blue-500 hover:underline">Edit</a> |
                             <a href="{{ route('workarea', ['projectNumber'=>$project->number,str_replace(" ", "_", $workarea->name)]) }}" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
                         </x-table-cell>
-                    </x-table-row>
+                    </x-table-row>p
 
                     @foreach($workarea->workpackages as $workpackage)
                         <x-table-row>
                             <x-table-cell>{{ $workarea->number . "." . $workpackage->number . ". " . $workpackage->name }}</x-table-cell>
-                            <x-table-cell>{{ ($workpackage->status==""?"-":ucwords($workpackage->status)) }}</x-table-cell>
+                            <x-table-cell>{{ ($workpackage->status==""?"":ucwords($workpackage->status)) }}</x-table-cell>
                             <x-table-cell>{{ count($workpackage->records->where('status','=', 'open')) }}</x-table-cell>
                             <x-table-cell>{{ $workpackage->user->initials() }}</x-table-cell>
-                            <x-table-cell>{{ ($workpackage->updated_at==null?"-":Carbon\Carbon::parse($workpackage->updated_at)->diffForHumans()) }}</x-table-cell>
+                            <x-table-cell>{{ ($workpackage->updated_at==null?"":Carbon\Carbon::parse($workpackage->updated_at)->diffForHumans()) }}</x-table-cell>
                             <x-table-cell></x-table-cell>
                             <x-table-cell><a href="{{ route('workpackage', ['projectNumber'=>$project->number,'workareaName'=>str_replace(" ", "_", $workarea->name),'workpackageName'=>str_replace(" ", "_", $workpackage->name)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
                         </x-table-row>
