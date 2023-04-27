@@ -45,7 +45,7 @@
                             <a href="{{ route('workarea', ['projectNumber'=>$project->number,str_replace(" ", "_", $workarea->name)]) }}" class="font-medium text-gray-600 dark:text-blue-500 hover:underline">Edit</a> |
                             <a href="{{ route('workarea', ['projectNumber'=>$project->number,str_replace(" ", "_", $workarea->name)]) }}" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
                         </x-table-cell>
-                    </x-table-row>p
+                    </x-table-row>
 
                     @foreach($workarea->workpackages as $workpackage)
                         <x-table-row>
