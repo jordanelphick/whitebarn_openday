@@ -25,15 +25,8 @@
                     @foreach($projects as $project)
                         <x-table-row>
                             <x-table-cell fontWeight="font-semibold">{{ $project->number }} - {{ $project->name }}</x-table-cell>
-
-                            <x-table-cell>
-                                @if($project->status=="")
-                                @else
-                                    <x-badge-pill colour="{{$project->getStatusColour()}}" >{{ucwords($project->status)}}</x-badge-pill>
-                                @endif
-                            </x-table-cell>
-
-                            <x-table-cell>{{ ($project->updated_at==null?"":Carbon\Carbon::parse($project->updated_at)->diffForHumans()) }}</x-table-cell>
+                            <x-table-cell>{{ ($project->status==""?"-":ucwords($project->status)) }}</x-table-cell>
+                            <x-table-cell>{{ ($project->updated_at==null?"-":Carbon\Carbon::parse($project->updated_at)->diffForHumans()) }}</x-table-cell>
                             <x-table-cell><a href="{{ route('project', $project->number) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></x-table-cell>
                         </x-table-row>
                     @endforeach

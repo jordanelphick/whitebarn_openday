@@ -34,24 +34,6 @@ class Project extends Model
         return $this->hasMany(Workarea::class);
     }
 
-    public function getStatusColour()
-    {
-
-        switch (strtolower($this->status)) {
-            case 'active':
-                return 'green';
-                break;
-
-            case 'inactive':
-                return 'indigo';
-                break;
-
-            default:
-                return 'gray';
-                break;
-        }
-
-    }
 
 
 }
