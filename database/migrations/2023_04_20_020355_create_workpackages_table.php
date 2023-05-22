@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('workpackages', function (Blueprint $table) {
             $table->id();
-            $table->string('number'); 
-            $table->string('name'); 
-            $table->string('status')->nullable();     
+            $table->integer('number');
+            $table->string('name');
+            $table->string('status')->nullable();
             $table->unsignedBigInteger('accountable_id');
-            $table->foreign('accountable_id')->references('id')->on('users'); 
+            $table->foreign('accountable_id')->references('id')->on('users');
             $table->unsignedBigInteger('workarea_id');
-            $table->foreign('workarea_id')->references('id')->on('workareas');     
+            $table->foreign('workarea_id')->references('id')->on('workareas');
             $table->timestamps();
         });
     }

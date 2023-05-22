@@ -31,7 +31,7 @@ class Project extends Model
      * Get the workpackges for the project.
      */
     public function workareas(): HasMany {
-        return $this->hasMany(Workarea::class);
+        return $this->hasMany(Workarea::class)->orderBy('number','asc');
     }
 
 

@@ -8,6 +8,8 @@ use App\Http\Livewire\cProjects;
 use App\Http\Livewire\cProject;
 use App\Http\Livewire\cWorkarea;
 use App\Http\Livewire\cWorkpackage;
+
+use App\Http\Livewire\ProjectWorkareas;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +38,8 @@ Route::middleware([
     Route::get('/projects/{projectNumber}/{workareaName}', cWorkarea::class)->name('workarea');
 
     Route::get('/projects/{projectNumber}/{workareaName}/{workpackageName}', cWorkpackage::class)->name('workpackage');
+
+
+
+    Route::get('/projects2/{project}', ProjectWorkareas::class)->name('projects.workareas');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Workarea;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 use App\Models\Record;
+use App\Models\Rfi;
 use App\Models\User;
 
 class Workpackage extends Model
@@ -19,6 +21,12 @@ class Workpackage extends Model
     protected $fillable = [
         'name'
     ];
+    /**
+     * The name of the parent model that should have its updated_at field updated when this model calls ->save()
+     *
+     * @var array<int, string>
+     */
+    //protected $touches = ['workarea'];
 
     public function workarea(): BelongsTo
     {
@@ -31,6 +39,11 @@ class Workpackage extends Model
     public function records(): HasMany
     {
         return $this->hasMany(Record::class);
+    }
+
+    public function rfis(): HasMany
+    {
+        return $this->hasMany(Rfi::class);
     }
 
     public function user(): HasOne

@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             ProjectsTableSeeder::class,
             WorkareasTableSeeder::class,
             WorkpackagesTableSeeder::class,
-            RecordsTableSeeder::class
-
+            RecordsTableSeeder::class,
+            RfisTableSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();

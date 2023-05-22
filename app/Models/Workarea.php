@@ -23,6 +23,12 @@ class Workarea extends Model
     protected $fillable = [
         'name'
     ];
+    /**
+     * The name of the parent model that should have its updated_at field updated when this model calls ->save()
+     *
+     * @var array<int, string>
+     */
+    protected $touches = ['project'];
 
     /**
      * Get the workpackage that owns the record.
@@ -36,7 +42,7 @@ class Workarea extends Model
      */
     public function workpackages(): HasMany
     {
-        return $this->hasMany(Workpackage::class);
+        return $this->hasMany(Workpackage::class)->orderBy('number','asc');
     }
 
 }

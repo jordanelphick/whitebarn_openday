@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workareas', function (Blueprint $table) {
+        Schema::create('rfis', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
+            $table->string('number');
             $table->string('name');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->string('status');
+            $table->string('comment');
+            $table->unsignedBigInteger('workpackage_id');
+            $table->foreign('workpackage_id')->references('id')->on('workpackages');
             $table->timestamps();
-
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workareas');
+        Schema::dropIfExists('rfis');
     }
 };
