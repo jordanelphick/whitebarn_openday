@@ -12,6 +12,7 @@ use Laravel\Scout\Searchable;
 use App\Models\Record;
 use App\Models\Rfi;
 use App\Models\User;
+use App\Models\Check;
 
 class Workpackage extends Model
 {
@@ -44,6 +45,11 @@ class Workpackage extends Model
     public function rfis(): HasMany
     {
         return $this->hasMany(Rfi::class);
+    }
+
+    public function checks(): HasMany
+    {
+        return $this->hasMany(Check::class);
     }
 
     public function user(): HasOne

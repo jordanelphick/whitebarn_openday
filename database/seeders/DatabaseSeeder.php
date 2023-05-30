@@ -22,7 +22,11 @@ class DatabaseSeeder extends Seeder
             WorkareasTableSeeder::class,
             WorkpackagesTableSeeder::class,
             RecordsTableSeeder::class,
-            RfisTableSeeder::class
+            RfisTableSeeder::class,
+            ChecksTableSeeder::class,
+            PrivilegesTableSeeder::class,
+            PrivilegeUserTableSeeder::class
+
         ]);
 
         // \App\Models\User::factory(10)->create();

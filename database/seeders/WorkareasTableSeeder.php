@@ -17,7 +17,7 @@ class WorkareasTableSeeder extends Seeder
     public function run(): void
     {
 
-        for($i = 1; $i<=4; $i++) {        
+        for($i = 1; $i<=4; $i++) {
             DB::table('workareas')->insert([
                 'number' => '3',
                 'name' => 'Project General',
@@ -68,19 +68,43 @@ class WorkareasTableSeeder extends Seeder
 
             DB::table('workareas')->insert([
                 'number' => '11',
-                'name' => 'Substation Civil and Structural',
+                'number_suffix' => 'N',
+                'name' => 'North Substation Civil and Structural',
+                'project_id' => $i
+            ]);
+
+            DB::table('workareas')->insert([
+                'number' => '11',
+                'number_suffix' => 'S',
+                'name' => 'South Substation Civil and Structural',
                 'project_id' => $i
             ]);
 
             DB::table('workareas')->insert([
                 'number' => '12',
-                'name' => 'Substation Primary',
+                'number_suffix' => 'N',
+                'name' => 'North Substation Primary',
+                'project_id' => $i
+            ]);
+
+            DB::table('workareas')->insert([
+                'number' => '12',
+                'number_suffix' => 'S',
+                'name' => 'South Substation Primary',
                 'project_id' => $i
             ]);
 
             DB::table('workareas')->insert([
                 'number' => '13',
-                'name' => 'Substation Secondary',
+                'number_suffix' => 'N',
+                'name' => 'North Substation Secondary',
+                'project_id' => $i
+            ]);
+
+            DB::table('workareas')->insert([
+                'number' => '13',
+                'number_suffix' => 'S',
+                'name' => 'South Substation Secondary',
                 'project_id' => $i
             ]);
 
@@ -88,7 +112,7 @@ class WorkareasTableSeeder extends Seeder
                 'number' => '14',
                 'name' => 'Handover',
                 'project_id' => $i
-            ]);            
+            ]);
         }
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
 use App\Models\Workpackage;
+use App\Models\Check;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
@@ -44,5 +45,6 @@ class Workarea extends Model
     {
         return $this->hasMany(Workpackage::class)->orderBy('number','asc');
     }
+
 
 }

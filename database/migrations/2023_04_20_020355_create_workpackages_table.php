@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('number');
             $table->string('name');
-            $table->string('status')->nullable();
+            $table->string('phase');
             $table->unsignedBigInteger('accountable_id');
             $table->foreign('accountable_id')->references('id')->on('users');
             $table->unsignedBigInteger('workarea_id');
-            $table->foreign('workarea_id')->references('id')->on('workareas');
+            $table->foreign('workarea_id')
+                ->references('id')->on('workareas')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

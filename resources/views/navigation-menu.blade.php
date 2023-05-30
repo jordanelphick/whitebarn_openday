@@ -1,3 +1,18 @@
+@if (auth()->user()->privileges->contains(function ($privilege) {
+    return $privilege->name === 'privileges' && $privilege->pivot->read === 1;
+}))
+
+<div class="bg-red-500 py-2 sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <p class="text-white text-center text-sm font-semibold">
+            Warning! Developer mode active
+        </p>
+        <button class="ml-4 text-white text-sm font-semibold bg-transparent border border-white py-1 px-2 rounded">
+            Turn off
+        </button>
+    </div>
+</div>
+@endif
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -5,23 +20,25 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="#">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+
                     <x-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects')">
                         {{ __('Projects') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('privileges') }}" :active="request()->routeIs('privileges')">
+                        {{ __('Privileges') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
@@ -142,7 +159,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
@@ -219,4 +236,5 @@
             </div>
         </div>
     </div>
+
 </nav>

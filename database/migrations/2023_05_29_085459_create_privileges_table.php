@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workareas', function (Blueprint $table) {
+        Schema::create('privileges', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->string('number_suffix')->nullable();
             $table->string('name');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->boolean('delegatable')->default('0');
             $table->timestamps();
-
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workareas');
+        Schema::dropIfExists('privileges');
     }
 };

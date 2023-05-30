@@ -13,6 +13,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
+use App\Models\Privilege;
 
 class User extends Authenticatable
 {
@@ -73,6 +74,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Record::class);
     }
 
+    /**
+     * The privileges that belong to the user.
+     */
+    public function privileges(): BelongsToMany
+    {
+        return $this->belongsToMany(Privilege::class)->withPivot('create', 'read', 'update','delete');
+    }
+
+    public function firstName(){
+        return strtok($this->name, " ");
+    }
     public function initials() {
         $ret = '';
         foreach (explode(' ', $this->name) as $word)
