@@ -1,3 +1,4 @@
+
 <!-- quick Edit Workarea Modal -->
 <div x-data="{ open: @entangle('showQuickEditWorkareaModal').defer }">
     <template x-if="open">

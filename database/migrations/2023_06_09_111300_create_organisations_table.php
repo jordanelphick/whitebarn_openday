@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rfis', function (Blueprint $table) {
+        Schema::create('organisations', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
             $table->string('name');
-            $table->string('status');
-            $table->string('comment');
-            $table->unsignedBigInteger('workpackage_id');
-            $table->foreign('workpackage_id')->references('id')->on('workpackages');
+            $table->string('acronym')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rfis');
+        Schema::dropIfExists('organisations');
     }
 };

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Workpackage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\Workpackage;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 
@@ -28,11 +29,18 @@ class Rfi extends Model
         return $this->belongsTo(Workpackage::class);
     }
 
-    public function users(): BelongsToMany
+    /**
+     * Get the workpackage that owns the record.
+     */
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
+    }
 
     public function getUsersInitials()
     {

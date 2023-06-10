@@ -35,7 +35,7 @@
                 <x-table-heading wire:click="sortBy('accountable_id')" :direction="$sortField ==='open_records' ? $sortDirection : null">Accountable</x-table-heading>
                 <!--<x-table-heading wire:click="sortBy('updated_at')" :direction="$sortField ==='updated_at' ? $sortDirection : null">UPDATED AT</x-table-heading>-->
                 <x-table-heading>Controls</x-table-heading>
-                <x-table-heading>Edit<span class="sr-only">Edit</span></x-table-heading>
+                <x-table-heading>Edit</x-table-heading>
             </x-slot>
             <x-slot name="body">
                 @foreach($project->workareas as $workarea)

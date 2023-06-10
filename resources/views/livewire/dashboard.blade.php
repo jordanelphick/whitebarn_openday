@@ -65,7 +65,7 @@
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-900">
-                            <a href="#" class="focus:outline-none">
+                            <a href="{{ route('requests-for-information', $project->number) }}" class="focus:outline-none">
                                 <span class="absolute inset-0" aria-hidden="true"></span>
                                 <span>Requests for Information</span>
                                 <span aria-hidden="true"> &rarr;</span>
@@ -186,7 +186,7 @@
         </ul>
         <div class="mt-4 flex">
             <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                Or start from an empty project
+                Or add your own shortcut to maintain focus
                 <span aria-hidden="true"> &rarr;</span>
             </a>
         </div>

@@ -10,6 +10,7 @@ use App\Http\Livewire\cProjects;
 use App\Http\Livewire\cWorkarea;
 use App\Http\Livewire\cWorkpackage;
 use App\Http\Livewire\cProjectRFIs;
+use App\Http\Livewire\cRfi;
 use App\Http\Livewire\ProjectWorkareas;
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,8 @@ Route::middleware([
     //Route::get('/projects/{project}/{workarea}', [WorkareaController::class, 'index'])->name('workarea');
     Route::get('/projects/{projectNumber}/{workareaName}', cWorkarea::class)->name('workarea');
 
-    Route::get('/projects/{projectNumber}/RFIs', cProjectRFIs::class)->name('project.rfis');
+    Route::get('/{projectNumber}/requests-for-information', cProjectRFIs::class)->name('requests-for-information');
+    Route::get('/{projectNumber}/requests-for-information/{rfiNumber}', cRfi::class)->name('request-for-information');
 
     Route::get('/projects/{projectNumber}/{workareaName}/{workpackageName}', cWorkpackage::class)->name('workpackage');
 

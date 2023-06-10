@@ -34,6 +34,11 @@ class Project extends Model
         return $this->hasMany(Workarea::class)->orderBy('number','asc')->orderBy('number_suffix','asc');
     }
 
+    public function hasAnyRfis(){
+        return $this->workareas()
+            ->whereHas('workpackages.rfis')
+            ->exists();
+    }
 
 
 }

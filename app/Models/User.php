@@ -82,6 +82,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Privilege::class)->withPivot('create', 'read', 'update','delete');
     }
 
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function rfis(): HasMany
+    {
+        return $this->hasMany(Rfi::class);
+    }
+
+    public function organisations(): BelongsToMany
+    {
+        return $this->belongsToMany(Organisation::class);
+    }
+
     public function firstName(){
         return strtok($this->name, " ");
     }

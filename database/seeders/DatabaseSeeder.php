@@ -22,10 +22,14 @@ class DatabaseSeeder extends Seeder
             WorkareasTableSeeder::class,
             WorkpackagesTableSeeder::class,
             RecordsTableSeeder::class,
-            RfisTableSeeder::class,
             ChecksTableSeeder::class,
             PrivilegesTableSeeder::class,
-            PrivilegeUserTableSeeder::class
+            PrivilegeUserTableSeeder::class,
+            OrganisationsTableSeeder::class,
+            OrganisationUserTableSeeder::class,
+            RfisTableSeeder::class,
+            MessagesTableSeeder::class,
+            AttachmentsTableSeeder::class,
 
         ]);
 
