@@ -16,22 +16,26 @@ class AttachmentsTableSeeder extends Seeder
         DB::table('attachments')->insert([
             'attachable_id' => '1',
             'attachable_type' => 'App\Models\Message',
-            'filename' => 'test.jpeg'
+            'filename' => 'test.jpeg',
+            'filepath' => ''
         ]);
         DB::table('attachments')->insert([
             'attachable_id' => '1',
             'attachable_type' => 'App\Models\Message',
-            'filename' => 'test.png'
+            'filename' => 'test.png',
+            'filepath' => ''
         ]);
         DB::table('attachments')->insert([
             'attachable_id' => '1',
             'attachable_type' => 'App\Models\Message',
-            'filename' => 'test.xlsx'
+            'filename' => 'test.xlsx',
+            'filepath' => ''
         ]);
         DB::table('attachments')->insert([
             'attachable_id' => '1',
             'attachable_type' => 'App\Models\Message',
-            'filename' => 'test.docx'
+            'filename' => 'test.docx',
+            'filepath' => ''
         ]);
     }
 }

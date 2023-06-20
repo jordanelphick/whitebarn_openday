@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('rfis', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->unsignedInteger('sender_index');
+            $table->string('project_acronym');
+            $table->string('number')->unique();
             $table->string('name');
             $table->string('status');
+            $table->string('priority')->default('medium');
             $table->string('comment')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('workpackage_id');
             $table->foreign('workpackage_id')->references('id')->on('workpackages');
-            $table->unsignedBigInteger('organisation_sender');
-            $table->foreign('organisation_sender')->references('id')->on('organisations');
-            $table->unsignedBigInteger('organisation_receiver');
-            $table->foreign('organisation_receiver')->references('id')->on('organisations');
+            $table->unsignedBigInteger('sender_organisation_id');
+            $table->foreign('sender_organisation_id')->references('id')->on('organisations');
+            $table->unsignedBigInteger('receiver_organisation_id');
+            $table->foreign('receiver_organisation_id')->references('id')->on('organisations');
             $table->timestamps();
         });
     }

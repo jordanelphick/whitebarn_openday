@@ -118,6 +118,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'id'=>'7',
             'name' => 'Jess Haugh',
+            'initials_override' => 'JHa',
             'email' => 'jhaugh@zenviron.com',
             'password' => Hash::make('NouveauC0de')
         ]);

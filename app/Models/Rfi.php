@@ -42,6 +42,17 @@ class Rfi extends Model
         return $this->hasMany(Message::class);
     }
 
+
+    public function sender_organisation()
+    {
+        return $this->belongsTo(Organisation::class, 'sender_organisation_id','id');
+    }
+
+    public function receiver_organisation()
+    {
+        return $this->belongsTo(Organisation::class, 'receiver_organisation_id','id');
+    }
+
     public function getUsersInitials()
     {
 

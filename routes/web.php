@@ -12,6 +12,7 @@ use App\Http\Livewire\cWorkpackage;
 use App\Http\Livewire\cProjectRFIs;
 use App\Http\Livewire\cRfi;
 use App\Http\Livewire\ProjectWorkareas;
+use App\Http\Controllers\DownloadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+    Route::get('/download/{attachment}', [DownloadController::class,'download'])->name('download');
 
     Route::get('/privileges', cPrivileges::class)->name('privileges');
     Route::get('/projects', cProjects::class)->name('projects');

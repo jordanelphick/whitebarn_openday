@@ -13,17 +13,21 @@ class RfisTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('rfis')->insert([
-            'number' => 'RPWF-ZEN-RFI-0001',
-            'name' => 'WTG transformer specification',
-            'status' => 'open',
-            'comment' => 'please provide all relevant documentation for review and consideration win teh BOP design',
-            'workpackage_id' => 7,
-            'user_id' => 1,
-            'organisation_sender' => '1',
-            'organisation_receiver' => '2',
-            'created_at' => '2023-05-13 06:09:45',
-            'updated_at' => '2023-05-18 06:09:45'
-        ]);
+        for ($i = 1; $i < 2; $i++) {
+            DB::table('rfis')->insert([
+                'sender_index' => $i,
+                'project_acronym' => 'MW2WF',
+                'number' => 'MW2WF-ZEN-RFI-'.str_pad($i, 4, '0', STR_PAD_LEFT),
+                'name' => 'WTG transformer specification',
+                'status' => 'open',
+                'comment' => 'please provide all relevant documentation for review and consideration win teh BOP design',
+                'workpackage_id' => 7,
+                'user_id' => 1,
+                'sender_organisation_id' => '1',
+                'receiver_organisation_id' => '2',
+                'created_at' => '2023-05-13 06:09:45',
+                'updated_at' => '2023-05-18 06:09:45'
+            ]);
+        }
     }
 }

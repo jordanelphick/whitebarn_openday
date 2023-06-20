@@ -6,12 +6,25 @@ use App\Models\Project;
 use App\Models\Rfi;
 use Livewire\Component;
 use App\Models\Workarea;
+use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
+
 class cRfi extends Component
 {
     public Rfi $rfi;
     public $projectNumber;
     public $notificationMsg;
     public $selectedRfi;
+    public $messageBody;
+
+    protected $listeners = [
+
+        'rfiUpdated' => 'refreshComponent',
+    ];
+
+    public function nullAll() {
+        $this->messageBody = null;
+    }
 
     public function mount($rfiNumber) {
         $rfi = Rfi::where('number', $rfiNumber)->first();
@@ -37,6 +50,25 @@ class cRfi extends Component
             'project' => $workarea->project,
             'rfi' => $this->rfi
         ]);
+    }
+
+    public function refreshComponent() {
+        $this->nullAll();
+        $this->render();
+    }
+
+
+    public function btnSaveMessage() {
+
+
+        $message = new Message();
+        $message->subject = '';
+        $message->body = $this->messageBody;
+        $message->visibility = 'public';
+        $message->rfi_id = $this->rfi->id;
+        $message->user_id = auth()->user()->id;
+        $message->save();
+        $this->emit('rfiUpdated');
     }
 
 }

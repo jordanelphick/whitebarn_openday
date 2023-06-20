@@ -101,10 +101,16 @@ class User extends Authenticatable
         return strtok($this->name, " ");
     }
     public function initials() {
-        $ret = '';
-        foreach (explode(' ', $this->name) as $word)
-            $ret .= strtoupper($word[0]);
-        return $ret;
+        $initials = '';
+        if($this->initials_override){
+            $initials =$this->initials_override;
+        } else {
+            foreach (explode(' ', $this->name) as $word)
+                $initials .= strtoupper($word[0]);
+        }
+
+
+        return $initials;
     }
 
 }

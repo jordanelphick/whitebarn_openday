@@ -98,9 +98,9 @@
                             <x-table-cell>
                                 @if($userIsAccountablePerson)
                                     <!-- TO DO: handle the accountable person differently by providing additional controls -->
-                                    {{ $workpackage->user->firstName() }}
+                                    {{ $workpackage->user->initials() }}
                                 @else
-                                    {{ $workpackage->user->firstName() }}
+                                    {{ $workpackage->user->initials() }}
                                 @endif
                             </x-table-cell>
 

@@ -15,4 +15,13 @@ class Organisation extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function organisation_sender() {
+        return $this->hasMany(Organisation::class, 'sender_organisation_id');
+    }
+
+    public function organisation_receiver() {
+        return $this->hasMany(Organisation::class, 'receiver_organisation_id');
+    }
+
+
 }

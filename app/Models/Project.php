@@ -40,6 +40,23 @@ class Project extends Model
             ->exists();
     }
 
+    public function rfis() {
+        $rfis = [];
+        foreach($this->workareas as $workarea){
+            foreach($workarea->workpackages as $workpackage) {
+                foreach($workpackage->rfis as $rfi) {
+                    $rfis[] = $rfi;
+                }
+
+            }
+        }
+        usort($rfis, function($a, $b) {
+            return strcmp($b->sender_index, $a->sender_index);
+        });
+        return $rfis;
+
+    }
+
 
 }
 
