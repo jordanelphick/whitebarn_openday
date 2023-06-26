@@ -100,6 +100,63 @@ class User extends Authenticatable
     public function firstName(){
         return strtok($this->name, " ");
     }
+
+
+    public function defaultProfilePhotoUrl()
+    {
+
+        
+        $initials = $this->initials();
+        $initialsLength = strLen($initials);
+        if (strlen($initials) > 2) {
+           // dd($initials);
+        }
+
+        // Define a list of colors with corresponding hexadecimal codes
+        $colors = [
+            'bg-red-500' => 'EF4444',
+            'bg-green-500' => '10B981',
+            'bg-blue-500' => '3B82F6',
+            'bg-yellow-500' => 'FCD34D',
+            'bg-purple-500' => '8B5CF6',
+            'bg-pink-500' => 'EC4899',
+            'bg-indigo-500' => '6366F1',
+            'bg-teal-500' => '14B8A6',
+            'bg-orange-500' => 'F97316',
+            'bg-cyan-500' => '22D3EE',
+            'bg-gray-500' => '6B7280',
+            'bg-amber-500' => 'F59E0B',
+            'bg-lime-500' => '84CC16',
+            'bg-emerald-500' => '10B981',
+            'bg-fuchsia-500' => 'C026D3',
+            'bg-rose-500' => 'F43F5E',
+            'bg-crimson-500' => 'DC2626',
+            'bg-teal-400' => '34D399',
+            'bg-amber-400' => 'FBBF24',
+            'bg-violet-400' => 'A855F7',
+            'bg-yellow-200' => 'FCD34D',
+            'bg-pink-300' => 'F472B6',
+            'bg-sky-300' => '93C5FD',
+            'bg-emerald-300' => '6EE7B7',
+        ];
+
+
+        // Hash the user's name to generate a color index
+        $nameHash = md5($this->name);
+        $colorIndex = hexdec(substr($nameHash, 0, 6)) % count($colors);
+        $color = array_keys($colors)[$colorIndex];
+        $hexCode = $colors[$color];
+
+
+        $fontColor = 'ffffff';
+
+
+        return 'https://ui-avatars.com/api/?name=' . $initials . '&color=' . $fontColor . '&background=' . $hexCode . '&length=' . $initialsLength . '&uppercase=false';
+    }
+
+
+
+
     public function initials() {
         $initials = '';
         if($this->initials_override){
