@@ -108,7 +108,7 @@ class cProjectRFIs extends Component
         if ($currentRfiSenderIndex== null) {
             $newRfiSenderIndex = 1;
         } else {
-            $newRfiSenderIndex = str_pad($currentRfiSenderIndex + 1, 4, '0', STR_PAD_LEFT);
+            $newRfiSenderIndex = str_pad($currentRfiSenderIndex +1, 4, '0', STR_PAD_LEFT);
         }
 
         $userOrganisation = auth()->user()->organisations->first();
@@ -141,8 +141,6 @@ class cProjectRFIs extends Component
 
 
         $rfi = $this->selectedRfi;
-
-
 
 
         $userOrganisationId = auth()->user()->organisations->first()->id;
@@ -179,7 +177,7 @@ class cProjectRFIs extends Component
         $rfi->user_id = $this->selectOptionCreatedById;
         $rfi->sender_organisation_id = $this->selectOptionSenderOrganisationId;
         $rfi->receiver_organisation_id = $this->selectOptionReceiverOrganisationId;
-
+        $rfi->next_update_organisation_id = $this->selectOptionReceiverOrganisationId;
         $rfi->save();
 
 
@@ -223,6 +221,7 @@ class cProjectRFIs extends Component
         $project = $this->project;
         $workareas = $project->workareas;
         $organisations = Organisation::orderBy('name','asc')->get();
+        $this->selectOptionCreatedById = auth()->user()->id;
         $users = User::orderBy('name','asc')->get();
         return view('livewire.requests-for-information', [
             'notification' => $this->notificationMsg,

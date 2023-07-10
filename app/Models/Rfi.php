@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Workpackage;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,6 +30,11 @@ class Rfi extends Model
         return $this->belongsTo(Workpackage::class);
     }
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id','id');
+    }
+
     /**
      * Get the workpackage that owns the record.
      */
@@ -51,6 +57,10 @@ class Rfi extends Model
     public function receiver_organisation()
     {
         return $this->belongsTo(Organisation::class, 'receiver_organisation_id','id');
+    }
+    public function next_update_organisation()
+    {
+        return $this->belongsTo(Organisation::class, 'next_update_organisation_id','id');
     }
 
     public function getUsersInitials()

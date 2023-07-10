@@ -27,9 +27,12 @@ class DatabaseSeeder extends Seeder
             PrivilegeUserTableSeeder::class,
             OrganisationsTableSeeder::class,
             OrganisationUserTableSeeder::class,
+            CategoriesTableSeeder::class,
             RfisTableSeeder::class,
             MessagesTableSeeder::class,
             AttachmentsTableSeeder::class,
+
+
 
         ]);
 

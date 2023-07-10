@@ -34,7 +34,9 @@
                     <x-table-heading>Number</x-table-heading>
                     <x-table-heading>Name</x-table-heading>
                     <x-table-heading>Work Package</x-table-heading>
+
                     <x-table-heading>Status</x-table-heading>
+                    <x-table-heading>To Action</x-table-heading>
                     <x-table-heading>Created By</x-table-heading>
                     <x-table-heading>Date Created</x-table-heading>
                     <x-table-heading></x-table-heading>
@@ -45,8 +47,24 @@
                                 <x-table-cell fontWeight="font-semibold">{{ $rfi->number }}</x-table-cell>
                                 <x-table-cell>{{ $rfi->name }}</x-table-cell>
                                 <x-table-cell>{{ $rfi->workpackage->name }}</x-table-cell>
+
                                 <x-table-cell>
-                                    <x-flat-pill-with-leading-icon>{{$rfi->status}}</x-flat-pill-with-leading-icon>
+                                    <div class="flex items-center">
+                                        @if($rfi->status=='open')
+                                            <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M14.5 1A4.5 4.5 0 0010 5.5V9H3a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-1.5V5.5a3 3 0 116 0v2.75a.75.75 0 001.5 0V5.5A4.5 4.5 0 0014.5 1z" clip-rule="evenodd" />
+                                            </svg>
+                                            <span class="text-sm pl-2 font-medium text-green-700">Open</span>
+                                        @else
+                                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clip-rule="evenodd" />
+                                            </svg>
+                                            <span class="text-sm pl-2 font-medium text-gray-700">Closed</span>
+                                        @endif
+                                    </div>
+                                </x-table-cell>
+                                <x-table-cell>
+                                    {{ $rfi->next_update_organisation->name }}
                                 </x-table-cell>
                                 <x-table-cell>
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

@@ -73,7 +73,7 @@
                                         <div class="mt-2">
                                             <select wire:model="selectOptionSenderOrganisationId" id="selectOrganisationReceiver-name" autocomplete="selectOrganisationReceiver-name" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                                                 <option value="">---</option>
-                                                @foreach($organisations as $organisation)
+                                                @foreach(auth()->user()->organisations as $organisation)
                                                     <option value="{{ $organisation->id }}">{{ $organisation->name }}</option>
                                                 @endforeach
                                             </select>
@@ -103,7 +103,7 @@
                                             <select wire:model="selectOptionCreatedById" id="selectCreatedBy" autocomplete="createdBy-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                                                 <option value="">---</option>
                                                 @foreach($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('selectOptionCreatedById') <span class="text-red-500">{{ $message }}</span> @enderror

@@ -105,7 +105,7 @@ class User extends Authenticatable
     public function defaultProfilePhotoUrl()
     {
 
-        
+
         $initials = $this->initials();
         $initialsLength = strLen($initials);
         if (strlen($initials) > 2) {

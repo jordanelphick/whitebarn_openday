@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('status');
             $table->string('priority')->default('medium');
             $table->string('comment')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('workpackage_id');
@@ -28,6 +30,9 @@ return new class extends Migration
             $table->foreign('sender_organisation_id')->references('id')->on('organisations');
             $table->unsignedBigInteger('receiver_organisation_id');
             $table->foreign('receiver_organisation_id')->references('id')->on('organisations');
+            $table->unsignedBigInteger('next_update_organisation_id');
+            $table->foreign('next_update_organisation_id')->references('id')->on('organisations');
+
             $table->timestamps();
         });
     }

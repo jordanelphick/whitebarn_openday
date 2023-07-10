@@ -143,6 +143,7 @@ class cDesignITP extends Component
     }
 
     public function btnSaveQuickEditWorkpackageModal() {
+        dd($this->selectOptionWorkareaId);
         $workpackage = $this->selectedWorkpackage;
         //dd($this->selectOptionWorkareaId);
         $workpackage->number = $this->workpackageNumber;
