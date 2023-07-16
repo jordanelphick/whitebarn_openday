@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('priority')->default('medium');
-            $table->string('comment')->nullable();
+            $table->string('body')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('user_id');

@@ -1,4 +1,6 @@
 <x-slot name="header">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 
     <nav class="hidden sm:flex" aria-label="Breadcrumb">
         <ol role="list" class="flex items-center space-x-4">
@@ -35,122 +37,128 @@
                     <div class="py-8 xl:py-10">
                         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 xl:grid xl:max-w-5xl xl:grid-cols-3">
                             <div class="xl:col-span-2 xl:border-r xl:border-gray-200 xl:pr-8">
+
                                 <div>
-                                    <div>
-                                        <div class="md:flex md:items-center md:justify-between md:space-x-4 xl:border-b xl:pb-6">
-                                            <div>
-                                                <h1 class="text-3xl font-bold pb-1 text-gray-900">Request For Information</h1>
-                                                <h1 class="text-2xl font-bold text-gray-900">{{$rfi->name}}</h1>
-                                                <p class="mt-2 text-lg font-bold text-gray-900">
-                                                    {{$rfi->number}}
-                                                </p>
-                                                <p class="mt-2 text-sm text-gray-500">opened by
-                                                    <a href="#" class="font-medium text-gray-900">{{$rfi->user->name}}</a>
-                                                    {{Carbon\Carbon::parse($rfi->created_at)->diffForHumans()}}
-                                                </p>
-                                            </div>
-                                            <div class="mt-4 flex space-x-3 md:mt-0">
-                                                <button type="button" class="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                                    <svg class="-ml-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
-                                                    </svg>
-                                                    Edit
-                                                </button>
-                                                <button type="button" class="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                                    <svg class="-ml-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.91 32.91 0 003.256.508 3.5 3.5 0 006.972 0 32.903 32.903 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    Subscribe
-                                                </button>
-                                            </div>
-
+                                    <div class="md:flex md:items-center md:justify-between md:space-x-4 xl:border-b xl:pb-6">
+                                        <div>
+                                            <h1 class="text-3xl font-bold pb-1 text-gray-900">Request For Information</h1>
+                                            <h1 class="text-2xl font-bold text-gray-900">{{$rfi->name}}</h1>
+                                            <p class="mt-2 text-lg font-bold text-gray-900">
+                                                {{$rfi->number}}
+                                            </p>
+                                            <p class="mt-2 text-sm text-gray-500">opened by
+                                                <a href="#" class="font-medium text-gray-900">{{$rfi->created_by->name}}</a>
+                                                {{Carbon\Carbon::parse($rfi->created_at)->diffForHumans()}}
+                                            </p>
                                         </div>
-                                        <aside class="mt-8 xl:hidden">
 
-                                            <h2 class="sr-only">Details</h2>
-                                            <div class="space-y-5">
-                                                <div class="flex items-center space-x-2">
-                                                    <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M14.5 1A4.5 4.5 0 0010 5.5V9H3a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-1.5V5.5a3 3 0 116 0v2.75a.75.75 0 001.5 0V5.5A4.5 4.5 0 0014.5 1z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <span class="text-sm font-medium text-green-700">Open Issue</span>
-                                                </div>
-                                                <div class="flex items-center space-x-2">
-                                                    <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902.848.137 1.705.248 2.57.331v3.443a.75.75 0 001.28.53l3.58-3.579a.78.78 0 01.527-.224 41.202 41.202 0 005.183-.5c1.437-.232 2.43-1.49 2.43-2.903V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zm0 7a1 1 0 100-2 1 1 0 000 2zM8 8a1 1 0 11-2 0 1 1 0 012 0zm5 1a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <span class="text-sm font-medium text-gray-900">{{count($rfi->messages)}} responses</span>
-                                                </div>
-                                                <div class="flex items-center space-x-2">
 
-                                                    <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <span class="text-sm font-medium text-gray-900">Created on <time datetime="2020-12-02">Dec 2, 2020</time></span>
-                                                </div>
+                                    </div>
+                                    <aside class="mt-8 xl:hidden">
+
+                                        <h2 class="sr-only">Details</h2>
+                                        <div class="space-y-5">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M14.5 1A4.5 4.5 0 0010 5.5V9H3a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-1.5V5.5a3 3 0 116 0v2.75a.75.75 0 001.5 0V5.5A4.5 4.5 0 0014.5 1z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span class="text-sm font-medium text-green-700">Open Issue</span>
                                             </div>
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902.848.137 1.705.248 2.57.331v3.443a.75.75 0 001.28.53l3.58-3.579a.78.78 0 01.527-.224 41.202 41.202 0 005.183-.5c1.437-.232 2.43-1.49 2.43-2.903V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zm0 7a1 1 0 100-2 1 1 0 000 2zM8 8a1 1 0 11-2 0 1 1 0 012 0zm5 1a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span class="text-sm font-medium text-gray-900">{{count($rfi->messages)}} responses</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
 
-                                            <div class="mt-6 space-y-8 border-b border-t border-gray-200 py-6">
-                                                <div>
-                                                    <h2 class="text-sm font-medium text-gray-500">Created By</h2>
-                                                    <ul role="list" class="mt-3 space-y-3">
-                                                        <li class="flex justify-start">
-                                                            <a href="#" class="flex items-center space-x-3">
-                                                                <div class="flex-shrink-0">
-                                                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                                                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                                                            <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->user->profile_photo_url }}" alt="{{ $rfi->user->name }}" />
+                                                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span class="text-sm font-medium text-gray-900">Created on <time datetime="2020-12-02">Dec 2, 2020</time></span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+
+                                                <h2 class="text-sm font-medium text-gray-500">Category</h2>
+                                                <ul role="list" class="mt-2 leading-8">
+                                                    <li class="inline">
+                                                        <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                                            <div class="absolute flex flex-shrink-0 items-center justify-center">
+                                                                <span class="h-1.5 w-1.5 rounded-full " style="background-color: {{$rfi->category->colour_hex}}" aria-hidden="true"></span>
+                                                            </div>
+                                                            <div class="ml-3 text-xs font-semibold text-gray-900">{{ucwords($rfi->category->name)}}</div>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-6 space-y-8 border-b border-t border-gray-200 py-6">
+                                            <div>
+                                                <h2 class="text-sm font-medium text-gray-500">Created By</h2>
+                                                <ul role="list" class="mt-3 space-y-3">
+                                                    <li class="flex justify-start">
+                                                        <a href="#" class="flex items-center space-x-3">
+                                                            <div class="flex-shrink-0">
+                                                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                                                    <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                                                        <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->created_by->profile_photo_url }}" alt="{{ $rfi->created_by->name }}" />
+                                                                    </button>
+                                                                @else
+                                                                    <span class="inline-flex rounded-md">
+                                                                        <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                                            </svg>
                                                                         </button>
-                                                                    @else
-                                                                        <span class="inline-flex rounded-md">
-                                                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                                                </svg>
-                                                                            </button>
-                                                                        </span>
-                                                                    @endif
-                                                                </div>
-                                                                <div class="text-sm font-medium text-gray-900">{{$rfi->user->name}}</div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h2 class="text-sm font-medium text-gray-500">Tags</h2>
-                                                    <ul role="list" class="mt-2 leading-8">
-                                                        <li class="inline">
-                                                            <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                                                <div class="absolute flex flex-shrink-0 items-center justify-center">
-                                                                    <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
-                                                                </div>
-                                                                <div class="ml-3 text-xs font-semibold text-gray-900">Bug</div>
-                                                            </a>
-                                                        </li>
-                                                        <li class="inline">
-                                                            <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                                                <div class="absolute flex flex-shrink-0 items-center justify-center">
-                                                                    <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
-                                                                </div>
-                                                                <div class="ml-3 text-xs font-semibold text-gray-900">Accessibility</div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="text-sm font-medium text-gray-900">{{$rfi->created_by->name}}</div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </aside>
+                                            <div>
+                                                <h2 class="text-sm font-medium text-gray-500">Tags</h2>
+                                                <ul role="list" class="mt-2 leading-8">
+                                                    <li class="inline">
+                                                        <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                                            <div class="absolute flex flex-shrink-0 items-center justify-center">
+                                                                <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
+                                                            </div>
+                                                            <div class="ml-3 text-xs font-semibold text-gray-900">Bug</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="inline">
+                                                        <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                                            <div class="absolute flex flex-shrink-0 items-center justify-center">
+                                                                <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
+                                                            </div>
+                                                            <div class="ml-3 text-xs font-semibold text-gray-900">Accessibility</div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </aside>
 
 
-                                        <div class="py-3 xl:pb-0 xl:pt-6">
-                                            <h2 class="sr-only">Description</h2>
-                                            <div class="prose max-w-none">
-                                                <p>{{$rfi->comment}}</p>
-                                            </div>
+                                    <div class="py-3 xl:pb-0 xl:pt-6">
+                                        <h2 class="sr-only">Description</h2>
+                                        <div class="prose max-w-none">
+                                            <p>{{$rfi->comment}}</p>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div>
+                                    {{$rfi->body}}
+                                </div>
                                 <section aria-labelledby="activity-title" class="mt-8 xl:mt-10">
                                     <div>
+
                                         <div class="divide-y divide-gray-200">
                                             <div class="pb-4">
                                                 <h2 id="activity-title" class="text-lg font-medium text-gray-900">Responses</h2>
@@ -201,6 +209,7 @@
                                                                             </div>
                                                                             @if($message->attachments->count())
                                                                                 <div class="mt-4 mb-6 text-sm text-gray-700">
+                                                                                    <p class="mt-0.5 text-sm text-gray-500 mb-2 mt-2">Attachments ({{count($message->attachments)}})</p>
                                                                                     <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                                                                         <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
                                                                                             @foreach($message->attachments as $attachment)
@@ -216,7 +225,7 @@
 
                                                                                                     </div>
                                                                                                     <div class="ml-4 flex-shrink-0">
-                                                                                                        <a href="{{ route('download', $attachment) }}" class="font-small text-sm text-indigo-600 hover:text-indigo-500">Download</a>
+                                                                                                        <a href="{{ route('download', $attachment) }}" class="font-small text-sm text-blue-600 hover:text-blue-500">Download</a>
                                                                                                     </div>
                                                                                                 </li>
                                                                                             @endforeach
@@ -262,6 +271,37 @@
                                 <h2 class="sr-only">Details</h2>
 
                                 <div class="space-y-5">
+                                    <div class="mt-4 flex space-x-3 md:mt-0">
+                                        <div class="relative inline-block text-left">
+                                            <div>
+                                                <button wire:click="btnOptionsToggle"  type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                                    Options
+                                                    <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div class="{{ $showOptions ? '' : 'hidden' }} absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical"  aria-labelledby="menu-button" tabindex="-1">
+                                                <div class="py-1" role="none">
+                                                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Edit</a>
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Duplicate</a>
+                                                </div>
+                                                <div class="py-1" role="none">
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Archive</a>
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Move</a>
+                                                </div>
+                                                <div class="py-1" role="none">
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
+                                                </div>
+                                                <div class="py-1" role="none">
+                                                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="flex items-center space-x-2">
                                         @if($rfi->status=='open')
                                             <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -287,9 +327,24 @@
                                         </svg>
                                         <span class="text-sm font-medium text-gray-900">Created on <time datetime="2020-12-02">{{Carbon\Carbon::parse($rfi->created_at)->format('M d, Y')}}</time></span>
                                     </div>
+
                                 </div>
 
                                 <div class="mt-6 space-y-8 border-t border-gray-200 py-6">
+                                    <div>
+                                        <h2 class="text-sm font-medium text-gray-500">Category</h2>
+                                        <ul role="list" class="leading-8">
+                                            <li class="inline">
+                                                <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                                    <div class="absolute flex flex-shrink-0 items-center justify-center">
+                                                        <span class="h-1.5 w-1.5 rounded-full " style="background-color: {{$rfi->category->colour_hex}}" aria-hidden="true"></span>
+                                                    </div>
+                                                    <div class="ml-3 text-xs font-semibold text-gray-900">{{ucwords($rfi->category->name)}}</div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
                                     <div>
                                         <h2 class="text-sm font-medium text-gray-500">Sender</h2>
                                         <ul role="list" class="mt-1 space-y-3">
@@ -319,7 +374,7 @@
 
                                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                                             <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                                                <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->user->profile_photo_url }}" alt="{{ $rfi->user->name }}" />
+                                                                <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->created_by->profile_photo_url }}" alt="{{ $rfi->created_by->name }}" />
                                                             </button>
                                                         @else
                                                             <span class="inline-flex rounded-md">
@@ -333,38 +388,38 @@
 
 
                                                     </div>
-                                                    <div class="text-sm font-medium text-gray-900">{{$rfi->user->name}}</div>
+                                                    <div class="text-sm font-medium text-gray-900">{{$rfi->created_by->name}}</div>
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
-
                                     <div>
                                         <h2 class="text-sm font-medium text-gray-500">Recipients</h2>
-                                        <div class="relative flex w-full">
-
-                                            <select id="select-recipient-users" name="recipient_users[]" multiple placeholder="Select users..." autocomplete="off" class="block w-full rounded-sm cursor-pointer focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" multiple>
-                                                @foreach(App\Models\User::all() as $user)
-                                                    <option {{($user->id < 6? 'selected':'')}} value="{{$user->id}}">{{ $user->name }}</option>
-                                                @endforeach
-
-                                            </select>
+                                        <div class="relative text-left pt-2 pb-2">
+                                            <div class="">
+                                                <input wire:model.debounce.300ms="search" wire:input="searchUsers" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Type to Search">
+                                                <div class="{{ $showUserSearchResults ? '' : 'hidden' }} absolute left-0 z-10 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical"  aria-labelledby="menu-button" tabindex="-1">
+                                                    @foreach($usersList as $user)
+                                                        <div class="py-1  hover:bg-gray-50" role="none">
+                                                            <a wire:click="addUser('{{ $user['id'] }}')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">{{ $user['name'] }}</a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
 
-                                        <h2 class="text-sm font-medium text-gray-500">Category</h2>
-                                        <ul role="list" class="mt-2 leading-8">
-                                            <li class="inline">
-                                                <a href="#" class="relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                                    <div class="absolute flex flex-shrink-0 items-center justify-center">
-                                                        <span class="h-1.5 w-1.5 rounded-full " style="background-color: {{$rfi->category->colour_hex}}" aria-hidden="true"></span>
-                                                    </div>
-                                                    <div class="ml-3 text-xs font-semibold text-gray-900">{{ucwords($rfi->category->name)}}</div>
-                                                </a>
-                                            </li>
-
-                                        </ul>
+                                        <div class="flex flex-wrap">
+                                            @foreach($rfi->users as $user)
+                                                <span class="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 my-1 mr-2">
+                                                    {{ $user->name }}
+                                                    <button wire:click="removeUser('{{ $user->id }}')" type="button" class="ml-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </aside>

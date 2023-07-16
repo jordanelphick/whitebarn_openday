@@ -38,14 +38,23 @@ class Rfi extends Model
     /**
      * Get the workpackage that owns the record.
      */
-    public function user(): BelongsTo
+    public function created_by(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        //dd('jere');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    /**
+     * The users that belong to the role.
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
 

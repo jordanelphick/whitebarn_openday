@@ -18,9 +18,18 @@ class cDashboard extends Component
         if($project) {
             $this->project = $project;
 
+            session()->put('active_project', [
+                'acronym' => $project->acronym,
+                'name' => $project->name,
+                'number' => $project->number,
+            ]);
+
         } else {
             //TO DO: handle incorrect project number
         }
+
+
+
     }
 
     public function render()

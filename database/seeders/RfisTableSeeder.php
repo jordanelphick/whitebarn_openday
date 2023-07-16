@@ -20,7 +20,7 @@ class RfisTableSeeder extends Seeder
                 'number' => 'MW2WF-ZEN-RFI-'.str_pad($i, 4, '0', STR_PAD_LEFT),
                 'name' => 'WTG transformer specification',
                 'status' => 'open',
-                'comment' => 'please provide all relevant documentation for review and consideration win the BOP design',
+                'body' => 'please provide all relevant documentation for review and consideration win the BOP design',
                 'category_id' => '1',
                 'workpackage_id' => 7,
                 'user_id' => 1,

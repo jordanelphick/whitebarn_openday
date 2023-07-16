@@ -23,11 +23,14 @@ class cProjectRFIs extends Component
     public $selectedRfi;
     public $rfiNumber;
     public $rfiName;
+    public $rfiBody;
+    public $selectOptionCategoryId;                 // this is stores user selection from dropdown list of options
     public $selectOptionCreatedById;                // this is stores user selection from dropdown list of options
     public $selectOptionWorkpackageId;              // this is stores user selection from dropdown list of options
     public $selectOptionReceiverOrganisationId;     // this is stores user selection from dropdown list of options
     public $selectOptionSenderOrganisationId;       // this is stores user selection from dropdown list of options
-    public $messageBody;
+
+
     public $fileUploads = [];
 
     public function rules()
@@ -36,10 +39,11 @@ class cProjectRFIs extends Component
             'rfiNumber' => 'required',
             'rfiName' => 'required',
             'selectOptionCreatedById' => 'required',
+            'selectOptionCategoryId' => 'required',
             'selectOptionReceiverOrganisationId' => 'required',
             'selectOptionSenderOrganisationId' => 'required',
             'selectOptionWorkpackageId' => 'required',
-            'messageBody' => 'required',
+            'rfiBody' => 'required',
         ];
     }
 
@@ -48,14 +52,18 @@ class cProjectRFIs extends Component
         return [
             'rfiNumber.required' => 'The RFI Number field is required.',
             'rfiName.required' => 'The RFI Name field is required.',
+            'selectOptionCategoryId.required' => 'The Category field is required.',
             'selectOptionCreatedById.required' => 'The Created By field is required.',
-            'selectOptionOrganisationReceiverId.required' => 'The Work Package field is required.',
+            'selectOptionReceiverOrganisationId.required' => 'The Receiver Organisation field is required.',
+            'selectOptionSenderOrganisationId.required' => 'The Sender Organisation field is required.',
             'selectOptionWorkpackageId.required' => 'The Work Package field is required.',
-            'messageBody.required' => 'The Message Body field is required.',
+            'rfiBody.required' => 'The Message Body field is required.',
         ];
     }
 
     public function mount($projectNumber) {
+
+
         $project = Project::where('number', $projectNumber)->first();
         if($project) {
             $this->project = $project;
@@ -68,6 +76,7 @@ class cProjectRFIs extends Component
         $this->showQuickEditRFIModal = null;
         $this->rfiNumber = null;
         $this->rfiName = null;
+        $this->selectOptionCategoryId = null;
         $this->selectOptionCreatedById = null;
         $this->selectOptionWorkpackageId = null;
         $this->selectOptionOrganisationReceiverId = null;
@@ -137,7 +146,7 @@ class cProjectRFIs extends Component
     public function btnSaveQuickEditRfiModal(){
 
 
-        //$this->validate(); // Trigger the validation rules
+        $this->validate(); // Trigger the validation rules
 
 
         $rfi = $this->selectedRfi;
@@ -172,7 +181,8 @@ class cProjectRFIs extends Component
         $rfi->project_acronym = $projectAcronym;
         $rfi->name = $this->rfiName;
         $rfi->status = 'open';
-
+        $rfi->body = $this->rfiBody;
+        $rfi->category_id = $this->selectOptionCategoryId;
         $rfi->workpackage_id = $this->selectOptionWorkpackageId;          // this is stores user selection from dropdown list of options
         $rfi->user_id = $this->selectOptionCreatedById;
         $rfi->sender_organisation_id = $this->selectOptionSenderOrganisationId;
@@ -182,13 +192,9 @@ class cProjectRFIs extends Component
 
 
 
-        $message = new Message();
-        $message->rfi_id = $rfi->id;
-        $message->user_id = $rfi->user_id;
-        $message->subject = '';
-        $message->visibility = 'public';
-        $message->body = $this->messageBody;
-        $message->save();
+
+
+
 
         // Save uploaded files
         if ($this->fileUploads) {
@@ -215,20 +221,23 @@ class cProjectRFIs extends Component
         $this->showQuickEditRFIModal = false;
     }
 
+
+
     public function render()
     {
-
         $project = $this->project;
         $workareas = $project->workareas;
         $organisations = Organisation::orderBy('name','asc')->get();
         $this->selectOptionCreatedById = auth()->user()->id;
         $users = User::orderBy('name','asc')->get();
+
         return view('livewire.requests-for-information', [
             'notification' => $this->notificationMsg,
             'organisations' => $organisations,
             'project' => $project,
             'users' => $users,
             'workareas' => $workareas,
+
         ]);
     }
 }

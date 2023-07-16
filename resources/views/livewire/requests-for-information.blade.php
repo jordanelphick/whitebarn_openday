@@ -22,13 +22,22 @@
 
 
 
-<div class="py-4">
-    @if($project->hasAnyRfis())
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-4 flex justify-end">
-            <x-button-with-leading-plus-circle wire:click="createRequestForInformation()" >Request for Information</x-button-with-leading-plus-circle>
+<div>
+    <div class="flex-1 max-w-7xl mx-auto py-2 px-4 mb-4">
+        <!-- Page title & actions -->
+        <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+            <div class="min-w-0 flex-1">
+                <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">Requests For Information</h1>
+            </div>
+            <div class="mt-4 mb-2 flex sm:ml-4 sm:mt-0">
+                <button type="button" class="sm:order-0 order-1 ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:ml-0">Share</button>
+                <button wire:click="createRequestForInformation()" type="button" class="order-0 inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 sm:order-1 sm:ml-3">Create</button>
+            </div>
         </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    </div>
+    @if($project->hasAnyRfis())
 
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-table>
                 <x-slot name="head">
                     <x-table-heading>Number</x-table-heading>
@@ -42,6 +51,7 @@
                     <x-table-heading></x-table-heading>
                 </x-slot>
                 <x-slot name="body">
+
                     @foreach($project->rfis() as $rfi)
                             <x-table-row>
                                 <x-table-cell fontWeight="font-semibold">{{ $rfi->number }}</x-table-cell>
@@ -69,12 +79,12 @@
                                 <x-table-cell>
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                         <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                            <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->user->profile_photo_url }}" alt="{{ $rfi->user->name }}" />
+                                            <img class="h-8 w-8 rounded-full object-cover" src="{{ $rfi->created_by->profile_photo_url }}" alt="{{ $rfi->created_by->name }}" />
                                         </button>
                                     @else
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                                {{ $rfi->user->name }}
+                                                {{ $rfi->created_by->name }}
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />

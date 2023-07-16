@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Privilege;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +14,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use App\Models\Privilege;
+
 
 class User extends Authenticatable
 {
@@ -82,15 +83,25 @@ class User extends Authenticatable
         return $this->belongsToMany(Privilege::class)->withPivot('create', 'read', 'update','delete');
     }
 
+    /**
+     * The rfis that belong to the user.
+     */
+    public function rfis(): BelongsToMany
+    {
+        return $this->belongsToMany(Rfi::class)->withPivot('create', 'read', 'update','delete');
+    }
+
+    //public function rfis(): HasMany
+    //{
+    //   return $this->hasMany(Rfi::class);
+    //}
+
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
     }
 
-    public function rfis(): HasMany
-    {
-        return $this->hasMany(Rfi::class);
-    }
+
 
     public function organisations(): BelongsToMany
     {

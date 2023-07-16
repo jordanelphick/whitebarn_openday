@@ -28,6 +28,7 @@ class cProjects extends Component
 
     public function render()
     {
+
        return view('livewire.projects', [
             'projects' => Project::orderBy($this->sortField,$this->sortDirection)->get()
         ]);

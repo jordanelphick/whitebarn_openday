@@ -14,14 +14,6 @@
                                     <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">{{ ($selectedRfi->id?'Edit':'Create a new') }} RFI</h3>
                                 </div>
                                 <div class="mt-3 text-left sm:mt-5">
-                                    <div class="col-span-full">
-                                        <label for="quickEditRfi-id" class="block text-sm font-medium leading-6 text-gray-900">RFI ID</label>
-                                        <div class="mt-2">
-                                            <input disabled type="text" name="quickEditRfi-id" id="quickEditRfi-id" autocomplete="quickEditWorkarea-number" value="{{$selectedRfi->id}}" class="cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-3 text-left sm:mt-5">
                                     <div class="mt-2">
                                         <label for="quickEditRfi-number" class="block text-sm font-medium leading-6 text-gray-900">{{ (!$selectedRfi->id?'Proposed':'') }} RFI Number</label>
                                         <label class="block text-xs font-medium leading-6 text-gray-500">Subject to confirmation once form is submitted</label>
@@ -69,15 +61,15 @@
 
                                 <div class="grid grid-cols-2 gap-3 mt-3 text-left sm:mt-5">
                                     <div>
-                                        <label for="selectOrganisationReceiver-name" class="block text-sm font-medium leading-6 text-gray-900">Sender</label>
+                                        <label for="selectOrganisationSender-name" class="block text-sm font-medium leading-6 text-gray-900">Sender</label>
                                         <div class="mt-2">
-                                            <select wire:model="selectOptionSenderOrganisationId" id="selectOrganisationReceiver-name" autocomplete="selectOrganisationReceiver-name" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                                            <select wire:model="selectOptionSenderOrganisationId" id="selectOrganisationSender-name" autocomplete="selectOrganisationReceiver-name" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                                                 <option value="">---</option>
                                                 @foreach(auth()->user()->organisations as $organisation)
                                                     <option value="{{ $organisation->id }}">{{ $organisation->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('selectOptionOrganisationReceiverId') <span class="text-red-500">{{ $message }}</span> @enderror
+                                            @error('selectOptionSenderOrganisationId') <span class="text-red-500">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
 
@@ -90,12 +82,25 @@
                                                     <option value="{{ $organisation->id }}">{{ $organisation->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('selectOptionOrganisationReceiverId') <span class="text-red-500">{{ $message }}</span> @enderror
+                                            @error('selectOptionReceiverOrganisationId') <span class="text-red-500">{{ $message }}</span> @enderror
                                         </div>
 
                                     </div>
                                 </div>
-
+                                <div class="grid grid-cols-2 gap-3 mt-3 text-left sm:mt-5">
+                                    <div>
+                                        <label for="selectCategory-name" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                                        <div class="mt-2">
+                                            <select wire:model="selectOptionCategoryId" id="selectCategory-name" autocomplete="selectCategory-name" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                                                <option value="">---</option>
+                                                @foreach(App\Models\Category::all() as $category)
+                                                    <option value="{{ $category->id }}">{{ ucwords($category->name) }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('selectOptionCategoryId') <span class="text-red-500">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="mt-3 text-left sm:mt-5">
                                     <div class="col-span-full">
                                         <label for="quickEditRfi-created_by" class="block text-sm font-medium leading-6 text-gray-900">Created By</label>
@@ -112,10 +117,10 @@
                                 </div>
                                 <div class="mt-3 text-left sm:mt-5">
                                     <div class="col-span-full">
-                                        <label for="quickEditRfi-name" class="block text-sm font-medium leading-6 text-gray-900">Message Body</label>
+                                        <label for="rfiBody" class="block text-sm font-medium leading-6 text-gray-900">RFI Body</label>
                                         <div class="mt-2">
-                                            <textarea wire:model="messageBody" rows="7" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
-                                            @error('messageBody') <span class="text-red-500">{{ $message }}</span> @enderror
+                                            <textarea wire:model="rfiBody" rows="7" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                            @error('rfiBody') <span class="text-red-500">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                                <button wire:click="btnSaveQuickEditRfiModal" type="button" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2">Save</button>
+                                <button wire:click="btnSaveQuickEditRfiModal" type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2">Save</button>
                                 <button wire:click="btnCancelModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0">Cancel</button>
                             </div>
                         </div>

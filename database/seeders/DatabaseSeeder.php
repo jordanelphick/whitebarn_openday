@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             RfisTableSeeder::class,
             MessagesTableSeeder::class,
             AttachmentsTableSeeder::class,
+            RfiUserTableSeeder::class
 
 
 
