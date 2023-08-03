@@ -3,16 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Livewire\cDashboard;
-use App\Http\Livewire\cPrivileges;
-use App\Http\Livewire\cDesignITP;
-use App\Http\Livewire\cProjects;
-use App\Http\Livewire\cWorkarea;
-use App\Http\Livewire\cWorkpackage;
-use App\Http\Livewire\cProjectRFIs;
-use App\Http\Livewire\cRfi;
-use App\Http\Livewire\ProjectWorkareas;
-use App\Http\Controllers\DownloadController;
 use App\Http\Livewire\cLogin;
 
 /*
@@ -34,23 +24,5 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
-    Route::get('/download/{attachment}', [DownloadController::class,'download'])->name('download');
 
-    Route::get('/privileges', cPrivileges::class)->name('privileges');
-    Route::get('/projects', cProjects::class)->name('projects');
-
-    //Route::get('/projects/{project}', [ProjectController::class, 'index'])->name('project');
-    Route::get('/{projectNumber}/dashboard', cDashboard::class)->name('dashboard');
-    Route::get('/{projectNumber}/design-itp', cDesignITP::class)->name('design-itp');
-    //Route::get('/projects/{project}/{workarea}', [WorkareaController::class, 'index'])->name('workarea');
-    Route::get('/projects/{projectNumber}/{workareaName}', cWorkarea::class)->name('workarea');
-
-    Route::get('/{projectNumber}/requests-for-information', cProjectRFIs::class)->name('requests-for-information');
-    Route::get('/{projectNumber}/requests-for-information/{rfiNumber}', cRfi::class)->name('request-for-information');
-
-    Route::get('/projects/{projectNumber}/{workareaName}/{workpackageName}', cWorkpackage::class)->name('workpackage');
-
-
-
-    Route::get('/projects2/{project}', ProjectWorkareas::class)->name('projects.workareas');
 });
