@@ -15,7 +15,7 @@
                         <input wire:model="emailAddress" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         @error('emailAddress') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
-                    <p class="text-gray-500 text-sm">That you used to order your Tickets through Oztix</p>
+                    <p class="text-gray-500 text-sm">Hint: Same email address that you used to order your Tickets through Oztix</p>
 
                 </div>
             </div>
