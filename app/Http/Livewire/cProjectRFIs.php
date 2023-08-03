@@ -90,7 +90,8 @@ class cProjectRFIs extends Component
     public function uploadFiles()
     {
         dd('here2');
-        $this->validate();
+
+
 
         foreach ($this->fileUploads as $file) {
             $filename = $file->getClientOriginalName();

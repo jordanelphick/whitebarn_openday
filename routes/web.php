@@ -13,6 +13,8 @@ use App\Http\Livewire\cProjectRFIs;
 use App\Http\Livewire\cRfi;
 use App\Http\Livewire\ProjectWorkareas;
 use App\Http\Controllers\DownloadController;
+use App\Http\Livewire\cLogin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +26,7 @@ use App\Http\Controllers\DownloadController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', cLogin::class)->name('login');
 
 Route::middleware([
     'auth:sanctum',

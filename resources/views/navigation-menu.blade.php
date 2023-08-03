@@ -1,19 +1,6 @@
-@if (auth()->user()->privileges->contains(function ($privilege) {
-    return $privilege->name === 'privileges' && $privilege->pivot->read === 1;
-}))
 
-<div class="bg-red-500 py-2 sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <p class="text-white text-center text-sm font-semibold">
-            Warning! Developer mode active
-        </p>
-        <button class="ml-4 text-white text-sm font-semibold bg-transparent border border-white py-1 px-2 rounded">
-            Turn off
-        </button>
-    </div>
-</div>
-@endif
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -140,6 +127,7 @@
                         </x-slot>
 
                         <x-slot name="content">
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
