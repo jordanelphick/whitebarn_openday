@@ -338,5 +338,14 @@ class UsersTableSeeder extends Seeder
         "email" => "taylahwalton@outlook.com",
             "password" => Hash::make('NouveauC0de'),
         ]);
+
+        $user = User::create([
+            "name" => "Alyssa Hillman",
+            "open_day_ticket_qty" => "5",
+            "email" => "alyssa.hillman@outlook.com",
+            "password" => Hash::make('NouveauC0de'),
+        ]);
+
+
     }
 }

@@ -18,21 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-            ProjectsTableSeeder::class,
-            WorkareasTableSeeder::class,
-            WorkpackagesTableSeeder::class,
-            RecordsTableSeeder::class,
-            ChecksTableSeeder::class,
-            PrivilegesTableSeeder::class,
-            PrivilegeUserTableSeeder::class,
-            OrganisationsTableSeeder::class,
-            OrganisationUserTableSeeder::class,
-            CategoriesTableSeeder::class,
-            RfisTableSeeder::class,
-            MessagesTableSeeder::class,
-            AttachmentsTableSeeder::class,
-            RfiUserTableSeeder::class
-
+            
 
 
         ]);
