@@ -14,7 +14,7 @@ class cLogin extends Component
     public $mobile;
     public $selectAttending;
     public $selectTicketQty;
-
+    public $showThankYouMessage = false;
 
     public User $user;
 
@@ -53,6 +53,19 @@ class cLogin extends Component
 
         if ($this->userId === null) {
             return view('whitebarn.openday.login');
+        } elseif ($this->showThankYouMessage) {
+
+            if($this->user->attending=='yes'){
+                return view('whitebarn.openday.thankyou', [
+                    'user' => $this->user
+                ]);
+            } else {
+                return view('whitebarn.openday.not-attending', [
+                    'user' => $this->user
+                ]);
+            }
+
+
         } else {
             return view('whitebarn.openday.confirmation', [
                 'user' => $this->user
@@ -92,5 +105,9 @@ class cLogin extends Component
         $user->attending = $this->selectAttending;
         $user->mobile = $this->mobile;
         $user->save();
+        $this->user = $user;
+
+        $this->showThankYouMessage = true;
+
     }
 }
