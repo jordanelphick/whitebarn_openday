@@ -75,12 +75,13 @@ class cLogin extends Component
 
     public function btnLogin()
     {
-        dd('ghello');
+
         $this->validateOnly('emailAddress', $this->rules());
 
         $user = User::where('email', $this->emailAddress)->first();
 
         if ($user) {
+            dd($user->name);
             $this->user = $user;
             $this->userId = $user->id;
             $this->userName = $user->name;
