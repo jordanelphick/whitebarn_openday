@@ -16,7 +16,7 @@
                         @error('emailAddress') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
                     <p class="text-gray-500 text-sm">This is the same email address that you used to order your Tickets through Oztix</p>
-
+test
                 </div>
             </div>
 
