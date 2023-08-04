@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Livewire\cLogin;
+use App\Http\Livewire\cHiddenDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,13 @@ use App\Http\Livewire\cLogin;
 
 Route::get('/', cLogin::class)->name('login');
 
+
+Route::get('/hidden-dashboard', cHiddenDashboard::class)->name('hidden-dashboard');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-
 
 });

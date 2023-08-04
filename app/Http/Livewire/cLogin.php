@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User;
 
+
 class cLogin extends Component
 {
     public $emailAddress;
@@ -110,6 +111,7 @@ class cLogin extends Component
         $this->user = $user;
 
         $this->showThankYouMessage = true;
+
 
     }
 }
