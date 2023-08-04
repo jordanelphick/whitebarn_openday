@@ -81,7 +81,7 @@ class cLogin extends Component
         $user = User::where('email', $this->emailAddress)->first();
 
         if ($user) {
-            
+
             $this->user = $user;
             $this->userId = $user->id;
             $this->userName = $user->name;
