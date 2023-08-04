@@ -12,7 +12,7 @@
 </x-slot>
 
 
-<div>
+<div class="">
     <div class="flex-1 max-w-7xl mx-auto py-2 px-4 mb-4">
         <!-- Page title & actions -->
         <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -24,8 +24,8 @@
             </div>
         </div>
     </div>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <x-table>
+    <div class=" max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <x-table class="p-4">
             <x-slot name="head">
                 <x-table-heading sortable wire:click="sortBy('name')" :direction="$sortField ==='name' ? $sortDirection : null">NAME</x-table-heading>
                 <x-table-heading sortable wire:click="sortBy('partner_name')" :direction="$sortField ==='partner_name' ? $sortDirection : null">PARTNERS NAME</x-table-heading>
