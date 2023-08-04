@@ -10,8 +10,9 @@
             </div>
             <div class="mt-3 text-left sm:mt-5">
                 <div class="col-span-full">
-                    <label  class="block text-sm font-medium leading-6 text-gray-900">Thank you</label>
-                    <p>Stay tuned to our Social Media accounts for more upcoming events at the White Barn</p>
+                    <p><label  class="block text-sm font-medium leading-6 text-gray-900">Sorry to hear that you cant make it to the Open Day</label></p><br>
+                    <p>Stay tuned to our Social Media accounts for more upcoming events at the White Barn.</p><br>
+                    <p>Otherwise, please reach out to us direct at admin@whitebarn.com.au to book a personlised site tour.</p>
                 </div>
             </div>
         </div>
