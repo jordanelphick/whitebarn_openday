@@ -75,6 +75,7 @@ class cLogin extends Component
 
     public function btnLogin()
     {
+        dd('ghello');
         $this->validateOnly('emailAddress', $this->rules());
 
         $user = User::where('email', $this->emailAddress)->first();
